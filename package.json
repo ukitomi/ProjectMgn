@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/ukitomi/ProjectMgn/issues"
   },
-  "homepage": "https://github.com/ukitomi/ProjectMgn#readme"
+  "homepage": "https://github.com/ukitomi/ProjectMgn#readme",
+  "keywords": [],
+  "devDependencies": {
+    "concurrently": "3.5.1"
+  }
 }
