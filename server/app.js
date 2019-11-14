@@ -8,8 +8,19 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var bodyParser = require('body-parser');
+var port = process.env.port || 3002;
 
-// view engine setup
+const mysql = require('mysql');
+// connection configurations
+const mc = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  passowrd: '',
+  database: 'test_db'
+});
+
+// // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -21,6 +32,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+mc.connect();
+
+app.listen(port);
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+var routes = require('./routes/appRoutes.js'); //importing route
+routes(app);
+module.exports = app;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +59,3 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-module.exports = app;

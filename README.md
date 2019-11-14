@@ -33,3 +33,13 @@ git add .
 git commit -a -m "message"
 git push origin your_branch_name
 ```
+
+## Database
+
+Download MySQL Community Server from here: https://dev.mysql.com/downloads/mysql/
+
+Logging into mysql:
+```
+mysql -u root -p
+// enter password when prompted
+```
